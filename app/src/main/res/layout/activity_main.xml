@@ -1,17 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="#ACAEBA"
-    >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:text="Hola Mundo..."
+        android:text="Calculadora"
+        android:textColor="#EA1010"
+        android:textStyle="bold"
+        android:textSize="23sp"
+        android:background="#22C2D6"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"
+
+
+
         />
+    <ImageView
+
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:src="@drawable/calculadorauno"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+
+        />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="valor 1"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+
+        />
+    <EditText
+        android:id="@+id/etvalor1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Ingrese valor 1"
+        android:textAlignment="center"
+        android:inputType="numberDecimal"
+
+
+        />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="valor 2"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+
+        />
+    <EditText
+        android:id="@+id/etvalor2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Ingrese valor 2"
+        android:textAlignment="center"
+        android:inputType="numberDecimal"
+
+
+        />
+    <TextView
+        android:id="@+id/tvresultado"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="resultado"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+
+        />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/sumar"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/restar"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/multiplicar"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/dividir"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:layout_marginLeft="10dp"
+            />
+
+
+    </LinearLayout>
 
 </LinearLayout>
