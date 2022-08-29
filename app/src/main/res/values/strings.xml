@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">app calculadora</string>
+    <string name="apptitle">mi gran calculadora</string>
+    <string name="value1">valor 1</string>
+    <string name="value2">valor 2</string>
+    <string name="resultado">resultado</string>
+    <string name="sumar">sumar</string>
+    <string name="restar">restar</string>
+    <string name="multiplicar">multiplicar</string>
+    <string name="dividir">dividir</string>
+
+
+</resources>
