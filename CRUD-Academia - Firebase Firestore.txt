@@ -1,0 +1,163 @@
+ackage com.example.academia;
+
+import android.support.annotation.MainThread;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity {
+    EditText nombre,apellido,edad,ident;
+    Button guardar,buscar,borrar,editar;
+    FirebaseFirestore db;
+    String idauto;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ident = findViewById(R.id.etident);
+        nombre = findViewById(R.id.etnombre);
+        apellido = findViewById(R.id.etapellido);
+        edad = findViewById(R.id.etedad);
+        guardar = findViewById(R.id.btnguardar);
+        buscar = findViewById(R.id.btnbuscar);
+        borrar = findViewById(R.id.btnborrar);
+        editar = findViewById(R.id.btneditar);
+
+        //final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> mcliente = new HashMap<>();
+                mcliente.put("apellido", apellido.getText().toString());
+                mcliente.put("nombre", nombre.getText().toString());
+                mcliente.put("edad", edad.getText().toString());
+                mcliente.put("ident", ident.getText().toString());
+
+                db.collection("cliente").document(idauto)
+                        .set(mcliente)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //Log.d("cliente", "DocumentSnapshot successfully written!");
+                                Toast.makeText(MainActivity.this,"Cliente actualizado correctmente...",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("cliente", "Error writing document", e);
+                            }
+                        });
+            }
+        });
+
+        borrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.collection("cliente").document(idauto)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //Log.d("cliente", "DocumentSnapshot successfully deleted!");
+                                Toast.makeText(MainActivity.this,"Cliente borrado correctamente...",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("cliente", "Error deleting document", e);
+                            }
+                        });
+            }
+        });
+
+
+        
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> user = new HashMap<>();
+                user.put("ident", ident.getText().toString());
+                user.put("nombre", nombre.getText().toString());
+                user.put("apellido",apellido.getText().toString());
+                user.put("edad", edad.getText().toString());
+
+
+                // Add a new document with a generated ID
+                db.collection("cliente")
+                        .add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                //Log.d("cliente", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                Toast.makeText(MainActivity.this,"Cliente agregado correctamente..", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("cliente", "Error adding document", e);
+                            }
+                        });
+            }
+        });
+
+
+
+    }
+}
+
+--------------- con el método buscar ----------
+   buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.collection("usuario")
+                        .whereEqualTo("user", user.getText().toString())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    if (!task.getResult().isEmpty()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            name.setText(document.getString("name"));
+                                            rol.setText(document.getString("rol"));
+                                            password.setText(document.getString("password"));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(),"No existe el usuario",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        });
+            }
+        });

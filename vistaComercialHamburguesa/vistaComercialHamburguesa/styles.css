@@ -1,0 +1,233 @@
+.body{
+    font-family: 'Roboto', sans-serif;
+    background: black;
+    display: flex;
+    
+}
+.contenedor{
+   display:block;
+   align-items: center;
+   justify-content: center;
+   
+}
+.izquierdo{
+    height: 100%;
+    width:310px;
+    background-color:black;
+    position:fixed;
+    
+}
+.bordeLogo{
+    height:200px;
+    width:200px ;
+    color: #FFD000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:32%;
+    margin-top:8.8%;
+    border: 1px solid;
+}
+.Logo{
+    height:180px;
+    width:180px ;
+    background-color:black;
+    background-image: url(./img/foto.png);
+    background-size:100% 100%;
+    
+    
+}
+.tamañoprincipal{
+    font-size:22px;
+    margin-left: -600%;
+    margin-top: 1px;
+}
+.p{
+    font-size:22px;
+    margin-top:-110% ;
+    margin-left:-310%;
+   
+}
+.tamañosecundario{
+    font-size:15px;
+    margin-top:-90%;
+    margin-left:-260%;
+}
+
+.IformacionContacto{
+    margin-top:60%;
+    color: #FFD000;
+    margin-left:10%;
+   
+}
+.inicio{
+    color:white;
+    text-decoration: none;
+    margin: 18px;
+    line-height:1.2;
+    text-decoration:solid;
+    font-size:160%;
+    text-decoration:underline  #FFD000;;
+    
+}
+.inicio:hover{
+    color:white;
+    
+}
+.colorletra{
+   color: #FFD000;
+  margin-left:90% ;
+  
+   
+}
+.colorletrass{
+    color: #FFD000;
+    margin-top:-0.5%;
+   text-align: end;
+   margin-right:3%;
+   font-size:18.5px;
+ }
+ .colorletras{
+    color: #FFD000;
+    text-align: right;
+    margin-top:-4%;
+    font-size:23px;
+    margin-right: 3%;
+ }
+
+
+.rede{
+    width: 10px;
+    height: 10px;
+    background-color:white;
+    border: 4px;
+    
+    
+}
+.redes{
+    background-image: url(./img/instagram.png);
+    background-size:100% 100%;
+    border: 4px;
+    font-size:40px;
+    text-decoration: none;
+    margin-left:-3%;
+    height:38px;
+    width: 38px;
+    
+    }
+   
+.redess{
+    background-image: url(./img/linkedin.png);
+    background-size:100% 100%;
+    border: 4px;
+    font-size:40px;
+    text-decoration: none;
+    height:38px;
+    width: 38px;
+    margin-left:5%;
+    margin-right:8%;
+    }
+
+.redesSociales{
+   margin-top:50%;
+    display: flex;
+    margin-left:10%;
+   
+    
+    
+}
+.ImagenCliente{
+    height:138vh;
+    width:84vh;
+    margin-top:7.5%;
+    background-image: url(./img/FOTO\ H\ \(1\).jpg);
+    background-size:100% 100%;
+    border:0.1px solid  #CBCAC9;
+    margin-left:40%;
+}
+.informacionArquitecto{
+    height:92vh;
+    width:400px;
+    float: left;
+    margin-left:8%;
+    margin-top:2%;
+    font-size:2vh;
+    color:#CBCAC9 ;
+    
+}
+.aside{
+   background-image: url(./img/aside.png); 
+   height:190vh;
+   width:9.5px;
+ margin-left:97%;
+  color: #FFD000;
+ margin-top:-350%;
+   
+}
+.footer{
+    color: #FFD000;
+    text-align: center;
+    margin-top:50%;
+    
+}
+.pi{
+    margin-top:30%;
+    font-size:12px ;
+    text-align: center;
+}
+.hamburguesas{
+    color: #CBCAC9;
+    margin-top:0% ;
+    font-size:160%;
+    margin-top: -19%;
+    margin-left: -28%;
+}
+.hamburguesa{
+    color: #CBCAC9;
+    font-size:90%;
+    margin-top:0%;
+    margin-left:-28%;
+    
+}
+.imagen2{
+    height:138vh;
+    width:84vh;
+    margin-top:11%;
+    margin-left:65%;
+    background-image: url(./img/FOTO\ H\ \(2\).jpg);
+    background-size:100% 100%;
+    border:0.1px solid  #CBCAC9;
+}
+
+.imagen3{
+    height:138vh;
+    width:84vh;
+    margin-top:14%;
+    margin-left:65%;
+    display: flex;
+    background-image: url(./img/FOTO\ H\ \(3\).jpg);
+    background-size:100% 100%;
+    border:0.1px solid  #CBCAC9;
+}
+.imagen4{
+    height:138vh;
+    width:84vh;
+    margin-top:14%;
+    margin-left:65%;
+    color: #FFD000;
+    font-size:5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./img/FOTO\ H\ \(4\).jpg);
+    background-size:100% 100%;
+    border:0.1px solid  #CBCAC9;
+}
+.derecho{
+    margin-left:18.1%;
+    margin-top: 8%;
+
+}
+
+
+
