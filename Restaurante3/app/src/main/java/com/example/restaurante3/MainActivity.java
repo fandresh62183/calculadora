@@ -3,6 +3,8 @@ package com.example.restaurante3;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +26,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance(); // instancia de Firestore
     String idCustomer; // variable que contendra el id de cada cliente (customer)
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,87 @@ public class MainActivity extends AppCompatActivity {
         Button btnsearch = findViewById(R.id.search);
         Button btnedit = findViewById(R.id.edit);
         Button btndelete = findViewById(R.id.delete);
+
+
+        btndelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setMessage("Está seguro de eliminar el cliente con Id "+ident.getText().toString()+"?");
+                alertDialogBuilder.setPositiveButton("Sí",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                db.collection("customer").document(idCustomer)
+                                        .delete()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                Toast.makeText(MainActivity.this,"Cliente borrado correctamente... ",Toast.LENGTH_SHORT).show();
+                                             ident.setText("");
+                                             fullname.setText("");
+                                             email.setText("");
+                                             password.setText("");
+                                             ident.requestFocus();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(MainActivity.this,"Cliente  no borrado  correctamente... " +e.getMessage(),Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        });
+
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+            }
+        });
+
+
+
+        btnedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String, Object> ucustomer = new HashMap<>();
+                ucustomer.put("fullname", fullname.getText().toString());
+                ucustomer.put("email", email.getText().toString());
+                ucustomer.put("password", password.getText().toString());
+               ucustomer.put("ident", ident.getText().toString());
+
+                db.collection("customer").document(idCustomer)
+                        .set(ucustomer)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //Log.d("cliente", "DocumentSnapshot successfully written!");
+                                Toast.makeText(MainActivity.this,"Cliente actualizado correctmente...",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this,"Cliente no actualizado correctmente...: " +e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            }
+        });
 
         btnsearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +161,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void saveCustomer(String sident, String sfullnane, String semail, String spassword) {
+
+
+
+
+
+    private void saveCustomer(String sident, String sfullname, String semail, String spassword) {
        // Buscar la identificacion del cliente nuevo
         db.collection("customer")
                 .whereEqualTo("ident", sident)
@@ -89,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                                // Guardar los datos del cliente (customer)
                                 Map<String, Object> customer = new HashMap<>(); // Tabla cursor
                                 customer.put("ident", sident);
-                                customer.put("fullname", sfullnane);
+                                customer.put("fullname", sfullname);
                                 customer.put("email", semail);
                                 customer.put("password", spassword);
 
